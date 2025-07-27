@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height">
+    <meta draggable="false">
+
+    <link rel="stylesheet" href="style.css"/>
+
+    <title>Jogo da velha</title>
+</head>
+<body>
+    <h1>Jogo da Velha</h1>
+    <div id="container">
+        <ul id="grid">
+            <li id="linha-1" class="linha">
+                <div class="cell" id="cell-1" onclick="SlotClicked(this)"></div>
+                <div class="cell" id="cell-2" onclick="SlotClicked(this)"></div>
+                <div class="cell" id="cell-3" onclick="SlotClicked(this)"></div>
+            </li>
+            <li id="linha-2" class="linha">
+                <div class="cell" id="cell-4" onclick="SlotClicked(this)"></div>
+                <div class="cell" id="cell-5" onclick="SlotClicked(this)"></div>
+                <div class="cell" id="cell-6" onclick="SlotClicked(this)"></div>
+            </li>
+            <li id="linha-3" class="linha">
+                <div class="cell" id="cell-7" onclick="SlotClicked(this)"></div>
+                <div class="cell" id="cell-8" onclick="SlotClicked(this)"></div>
+                <div class="cell" id="cell-9" onclick="SlotClicked(this)"></div>
+            </li>
+        </ul>
+    </div>
+
+    <button id="btnReset" onclick="Reset()">
+        <span>Resetar</span>
+    </button>
+    <span id="congragulations"></span>
+</body>
+
+<script src="index.js"></script>
+</html>
