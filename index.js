@@ -1,9 +1,9 @@
 let turn = 'x' // define de quem pertence o turno
 let hasAWinner = false; // define se há um vencedor
 
-const congragulationsTextElement = document.getElementById('congragulations');
-var x // Uma variável qualquer para testes
+const congragulationsTextElement = document.getElementById('congragulations'); // obtém o elemento que revela o vencedor do jogo
 
+// constrói uma cópia do tabuleiro do usuário para ser usada nas verficações
 const getBoard = () => {
     const grid = document.getElementsByClassName('cell');
     let board = [];
@@ -14,12 +14,11 @@ const getBoard = () => {
             board[linha].push(grid[celula + (linha * 3)].innerText);
         }
     }
-    // board[0].forEach()
 
-    return board;
+    return board; // board[linha][coluna]
 }
 
-
+// verifica se já temos um vencedor
 const checkForWinner = () => {
     let board = getBoard();
     if(!hasAWinner) {
@@ -74,36 +73,44 @@ const checkForWinner = () => {
     }
 }
 
+// Altera o texto, o que consequentemente altera o turno dos jogadores
 const SkipTurn = () => {
     if(turn == 'x'){
         turn = 'o';
     }else{ turn = 'x';}
 }
 
+// Responsável por atualizar o tabuleiro, e chamar as funções necessárias para o funcionamento do jogo
 const SlotClicked = (slot) => {
-    let hasAWinner = checkForWinner();
-    if(slot.textContent == '') {
+    if(slot.textContent == '' && !hasAWinner) {
         slot.classList.add("cell-marked");
-
         slot.textContent = turn;
     }
 
     SkipTurn();
-    let winner = checkForWinner()
-    console.log(hasAWinner)
-    console.log(winner)
+    let winner = checkForWinner();
     if(!winner == '') {
         Congragulations(winner)
     }
 }
 
+// Revela o vencedor do jogo
 const Congragulations = (winner) => {
     congragulationsTextElement.textContent = `Parabéns jogador ${winner == 1 ? 'X' : 'O'}!`
+    let cells = document.getElementsByClassName("cell")
+    for (let cell = 0; cell < cells.length; cell++) {
+        if (!cells[cell].classList.contains('cell-marked')) {
+            cells[cell].classList.add("cell-marked");
+        }
+    };
+
 }
 
+// Reseta o tabuleiro e as variáveis para que um novo jogo comece
 const Reset = () => {
     hasAWinner = false;
     congragulationsTextElement.textContent = '';
+    turn = 'x';
     let CellsList = document.getElementsByClassName('cell');
     if(CellsList.length > 0){
         for(let i = 0; i < CellsList.length; i++){
